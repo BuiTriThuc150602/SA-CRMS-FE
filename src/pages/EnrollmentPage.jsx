@@ -26,7 +26,7 @@ const EnrollmentPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center w-screen border bg-white w-[90%] ml-20 mr-20">
+      <div className="flex items-center border bg-white w-screen ml-20 mr-20">
         <div className="flex w-60 flex-col bg-sky-500 text-white p-2 pl-7 pr-7">
           <p>Xin chào!</p>
           <p className="text-lg font-semibold">Nguyễn Văn Lộc</p>
@@ -61,7 +61,7 @@ const EnrollmentPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center border w-[90%] ml-20 mr-20">
+      <div className="flex flex-col items-center justify-center border w-screen ml-20 mr-20">
         <p className="text-2xl font-bold text-sky-700 mt-2">ĐĂNG KÍ HỌC PHẦN</p>
         <div className="flex items-center mt-5">
           <p className="text-base font-semibold ">Đợt đăng kí: </p>
