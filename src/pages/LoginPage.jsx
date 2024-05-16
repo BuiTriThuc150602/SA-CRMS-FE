@@ -31,7 +31,7 @@ const LoginPage = () => {
         
       </div>
       <div className="flex w-screen h-[90%]">
-        <div className="flex flex-col w-3/5 p-5 rounded-md shadow-lg">
+        <div className="flex flex-col w-3/5 p-5 rounded-md shadow-lg bg-white">
           <div className="mt-5 mb-2">
             <h1 className="text-3xl font-bold mb-3 ">Thông Tin Giờ Học</h1>
             <p className="text-gray-500">Cập nhật lần cuối : 22/10/2020</p>
@@ -44,8 +44,8 @@ const LoginPage = () => {
             />
           </div>
         </div>
-        <div className="w-2/5 flex justify-center items-center">
-          <div className="flex flex-col items-center border w-[80%] h-[90%] p-3 rounded-xl shadow-2xl">
+        <div className="w-2/5 flex justify-center items-center ">
+          <div className="flex flex-col items-center border w-[80%] h-[90%] p-3 rounded-xl shadow-2x">
             <div className="mt-5 flex flex-col items-center">
               <p className="text-3xl font-bold mb-3 text-[#08387f] text-center">
                 CỔNG THÔNG TIN SINH VIÊN

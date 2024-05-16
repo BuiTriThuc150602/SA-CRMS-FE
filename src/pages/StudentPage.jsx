@@ -40,8 +40,8 @@ const StudentPage = () => {
     navigate("/login");
   };
   return (
-    <div className="w-screen h-screen font-roboto ">
-      <div className="flex relative justify-center items-center h-[10%] w-screen border shadow-lg shadow-[#e4eff5] bg-white">
+    <div className="w-screen h-screen font-roboto">
+      <div className="flex relative justify-center items-center h-[10%] w-screen shadow-xl bg-white">
         <div className="flex fix">
           <img
             src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-iuh-inkythuatso-01-08-11-18-25.jpg"
@@ -81,8 +81,8 @@ const StudentPage = () => {
           </details>
         </div>
       </div>
-      <div className="flex justify-center items-center w-screen h-[90%] overflow-auto">
-        <div className="flex flex-col w-[70%] h-[98%] p-5 rounded-2xl shadow-lg border overflow-auto">
+      <div className="flex justify-center items-center w-screen h-[90%] overflow-auto bg-sky-300">
+        <div className="flex flex-col w-[70%] h-[98%] p-5 rounded-2xl shadow-lg border overflow-auto bg-white">
           <div className="flex">
             <div className="mt-5 mb-2 border rounded-xl h-96 w-[28%] mr-3 overflow-hidden">
               {/* avatar */}
@@ -255,7 +255,7 @@ const StudentPage = () => {
         </div>
       </div>
       {/* menu */}
-      <div className="flex flex-col w-[12%] border rounded-xl shadow-2xl absolute top-[11%] left-5 p-2">
+      <div className="flex flex-col w-[12%] border rounded-xl shadow-2xl absolute top-[11%] left-5 p-2 bg-white">
         <div className="flex flex-col">
           <button
             className="flex px-2 py-3 w-full border-b rounded-lg hover:bg-gray-200"
@@ -277,7 +277,9 @@ const StudentPage = () => {
           <button
             className="flex px-2 py-3 w-full rounded-lg hover:bg-gray-200"
             onClick={() => {
-              navigate("/enrollment");
+              // navigate to enrollment page and pass the student as props
+              navigate("/enrollment", { state: { student: studentInfo } });
+
             }}
           >
             <IoIosCheckboxOutline size={20} color="grey" className="mr-3" />

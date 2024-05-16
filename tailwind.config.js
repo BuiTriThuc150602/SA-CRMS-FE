@@ -11,6 +11,8 @@ export default {
       backgroundColor: {
         primary: "#008ffb",
         primaryHover: "#0190f3",
+        // bg white 80% opacity
+        bgOpacity: "rgba(255, 255, 255, 0.2)",
       },
     },
   },

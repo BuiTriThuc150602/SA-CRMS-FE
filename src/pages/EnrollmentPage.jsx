@@ -1,11 +1,17 @@
-import { TbSquareArrowDown } from "react-icons/tb";
 import imgCR7 from "../assets/cr7.jpg";
 import { useState } from "react";
+
 import { IoCloseCircle } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
 const EnrollmentPage = () => {
   const [semester, setSemsester] = useState("HK2 (2023-2024)");
+
+  // get student info from location state passed from the student :>>>
+  const location = useLocation();
+  const student = location.state?.student;
+  console.log(student);
 
   return (
     <div className="w-screen h-screen font-roboto overflow-y-auto">
