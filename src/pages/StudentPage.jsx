@@ -17,13 +17,13 @@ const StudentPage = () => {
   const { student, loading, getStudent } = useStudentHook();
   const [studentInfo, setStudentInfo] = useState({});
   const navigate = useNavigate();
-  const {setToken} = useAuthContext();
+  const { setToken } = useAuthContext();
 
   const studentStatus = {
-    "ENROLLED": "Đang Học",
-    "GRADUATED": "Đã Tốt Nghiệp",
-    "DROPOUT": "Bỏ Học",
-    "SUSPENDED": "Đình Chỉ",
+    ENROLLED: "Đang Học",
+    GRADUATED: "Đã Tốt Nghiệp",
+    DROPOUT: "Bỏ Học",
+    SUSPENDED: "Đình Chỉ",
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const StudentPage = () => {
   };
   return (
     <div className="w-screen h-screen font-roboto">
-      <div className="flex relative justify-center items-center h-[10%] w-screen shadow-xl bg-white">
+      <div className="flex relative justify-center items-center h-[15%] w-screen shadow-xl bg-white">
         <div className="flex fix">
           <img
             src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-iuh-inkythuatso-01-08-11-18-25.jpg"
@@ -57,7 +57,7 @@ const StudentPage = () => {
             </h1>
           </div>
         </div>
-        <div className="absolute flex justify-between items-center top-3 xl:right-72 md:right-2 xl:px-5 md:px-1">
+        <div className="absolute flex justify-between items-center right-8">
           <img
             src={studentInfo.avatar}
             alt="avatar"
@@ -72,10 +72,7 @@ const StudentPage = () => {
                 <button>Đổi mật khẩu</button>
               </li>
               <li>
-                <button
-                  onClick={handleLogout}
-
-                >Đăng xuất</button>
+                <button onClick={handleLogout}>Đăng xuất</button>
               </li>
             </ul>
           </details>
@@ -241,11 +238,7 @@ const StudentPage = () => {
                   <div className="flex mt-3">
                     <p className="mr-3  text-xl font-semibold">Trạng Thái:</p>
                     <div className="text-xl text-gray-700 font-semibold">
-                      {
-                        studentStatus[
-                          studentInfo.studentStatus
-                        ]
-                      }
+                      {studentStatus[studentInfo.studentStatus]}
                     </div>
                   </div>
                 </div>
@@ -255,7 +248,7 @@ const StudentPage = () => {
         </div>
       </div>
       {/* menu */}
-      <div className="flex flex-col w-[12%] border rounded-xl shadow-2xl absolute top-[11%] left-5 p-2 bg-white">
+      <div className="flex flex-col w-[14%] border rounded-xl shadow-2xl absolute top-[16%] left-4 p-2 bg-white">
         <div className="flex flex-col">
           <button
             className="flex px-2 py-3 w-full border-b rounded-lg hover:bg-gray-200"
@@ -266,7 +259,13 @@ const StudentPage = () => {
             <IoHomeOutline size={20} color="grey" className="mr-3" />
             <p className="text-gray-700 font-roboto">Thông Tin Cá Nhân</p>
           </button>
-          <button className="flex px-2 py-3 w-full border-b rounded-lg hover:bg-gray-200">
+          <button
+            className="flex px-2 py-3 w-full border-b rounded-lg hover:bg-gray-200"
+            onClick={() => {
+              // navigate to enrollment page and pass the student as props
+              navigate("/calendar", { state: { student: studentInfo } });
+            }}
+          >
             <GrSchedule size={20} color="grey" className="mr-3" />
             <p className="text-gray-700 font-roboto">Thời Khóa Biểu</p>
           </button>
@@ -279,7 +278,6 @@ const StudentPage = () => {
             onClick={() => {
               // navigate to enrollment page and pass the student as props
               navigate("/enrollment", { state: { student: studentInfo } });
-
             }}
           >
             <IoIosCheckboxOutline size={20} color="grey" className="mr-3" />
