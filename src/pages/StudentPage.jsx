@@ -41,7 +41,7 @@ const StudentPage = () => {
   };
   return (
     <div className="w-screen h-screen font-roboto">
-      <div className="flex relative justify-center items-center h-[15%] w-screen shadow-xl bg-white">
+      <div className="flex relative justify-center items-center h-[15%] w-full shadow-xl bg-white">
         <div className="flex fix">
           <img
             src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-iuh-inkythuatso-01-08-11-18-25.jpg"
@@ -78,7 +78,7 @@ const StudentPage = () => {
           </details>
         </div>
       </div>
-      <div className="flex justify-center items-center w-screen h-[90%] overflow-auto bg-sky-300">
+      <div className="flex justify-center items-center w-full h-[90%] overflow-auto bg-sky-300">
         <div className="flex flex-col w-[70%] h-[98%] p-5 rounded-2xl shadow-lg border overflow-auto bg-white">
           <div className="flex">
             <div className="mt-5 mb-2 border rounded-xl h-96 w-[28%] mr-3 overflow-hidden">

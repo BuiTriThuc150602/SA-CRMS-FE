@@ -14,7 +14,8 @@ import { useAuthContext } from "../contexts/AuthContext";
 
 const EnrollmentPage = () => {
   const [semester, setSemsester] = useState("HK1(2020-2021)");
-  const { courses, loading, getCourses } = useCourseHook();
+  const { courses, loading, getCourses, checkDuplicatedCourseInEnrollment } =
+    useCourseHook();
   const {
     enrollmentClasses,
     getEnrollmentClassesByCourse,
@@ -49,6 +50,7 @@ const EnrollmentPage = () => {
     []
   );
   const [selectedScheduleId, setSelectedScheduleId] = useState([]);
+  console.log("selectedScheduleId: ", selectedScheduleId);
 
   // get student info from location state passed from the student :>>>
   const location = useLocation();
@@ -87,17 +89,26 @@ const EnrollmentPage = () => {
   }, [student.id, semester]);
   console.log(enrollments);
 
-  console.log("selectedCourseId " + selectedCourseId);
-  const handleRowClickCourse = (id) => {
-    setSelectedCourseId(id === selectedCourseId ? null : id);
+  const handleRowClickCourse = async (id) => {
+    console.log("CourseId: ", id);
+    const isDuplicatedCourse = await checkDuplicatedCourseInEnrollment(
+      id,
+      student.id,
+      semester
+    );
+    console.log("isDuplicatedCourse: ", isDuplicatedCourse);
+    if (isDuplicatedCourse) {
+      toast.error("Môn học đã được đăng kí!");
+      setSelectedCourseId(null);
+    } else {
+      setSelectedCourseId(id === selectedCourseId ? null : id);
+    }
   };
 
-  console.log("selectedEnrollmentClassId " + selectedEnrollmentClassId);
   const handleRowClickEnrollmentClass = (id) => {
     setSelectedEnrollmentClassId(id === selectedEnrollmentClassId ? null : id);
   };
 
-  console.log("selectedScheduleId " + selectedScheduleId);
   const handleRowClickSchedule = (id) => {
     setSelectedScheduleId(id === selectedScheduleId ? null : id);
   };
@@ -124,7 +135,6 @@ const EnrollmentPage = () => {
 
   // console.log(courses);
 
-  console.log("error " + error);
   const handleDialogClose = () => {
     setError(null); // Clear error to close dialog
     setSelectedEnrollmentClassId(null);
@@ -142,7 +152,7 @@ const EnrollmentPage = () => {
       semester,
       selectedScheduleId
     );
-    console.log();
+
     if (isDuplicated) {
       toast.error("Lịch học trùng");
     } else {
@@ -155,7 +165,7 @@ const EnrollmentPage = () => {
         semester: semester,
         deadline: new Date().toISOString(),
         enrollmentStatus: 0,
-        collectionStatus: 0,
+        collectionStatus: 1,
         registrationDate: new Date().toISOString(),
         cancellationDate: null,
         tuitionFee: 1200000,
@@ -166,6 +176,12 @@ const EnrollmentPage = () => {
       window.location.reload(); // Reload lại trang
     }
   };
+
+  // useEffect(()=>{
+  //   if (error !== "Bad Request" && error !== null) {
+  //     setSelectedScheduleId(null);
+  //   }
+  // },[error]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -504,7 +520,9 @@ const EnrollmentPage = () => {
               {error !== "Bad Request" && error !== null && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                   <div className="flex flex-col items-center justify-center bg-white p-4 border border-gray-300 shadow-lg rounded">
-                    <p className="text-red-500 font-bold">Lớp đã đủ số lượng!</p>
+                    <p className="text-red-500 font-bold">
+                      Lớp đã đủ số lượng!
+                    </p>
                     <button
                       onClick={handleDialogClose}
                       className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"

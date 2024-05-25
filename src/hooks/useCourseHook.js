@@ -36,7 +36,7 @@ const useCourseHook = () => {
             });
             const data = response.data;
             if (response.status === 200) {
-                setCourse(data);
+                setCourses(data);
                 setError(null);
             } else {
                 setError(data.message);
@@ -54,7 +54,30 @@ const useCourseHook = () => {
         setLoading(false);
     };
 
-    return { courses, loading, getCourses, getCoursesById};
+
+    const checkDuplicatedCourseInEnrollment = async (courseId,studentId, semester) => {
+        try {
+          const response = await axiosInstance.get("/course/check-duplicated-course-enrollment", {
+            params: { courseId, studentId, semester },
+          });
+          const data = response.data;
+       
+          if (response.status === 200) {
+            return data;
+          } else {
+            return false;
+          }
+        } catch (error) {
+          if (error.response) {
+            toast.error(error.response.data.message);
+          } else {
+            toast.error("Check duplicated course failed! Please try again.");
+          }
+          return false;
+        }
+      };
+
+    return { courses, loading, getCourses, getCoursesById, checkDuplicatedCourseInEnrollment};
 };
 
 export default useCourseHook;

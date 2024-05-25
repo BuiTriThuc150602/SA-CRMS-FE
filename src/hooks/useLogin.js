@@ -17,10 +17,11 @@ const useLogin = () => {
 
             const data = response.data;
             console.log(response);
-            if (response.status === 200) {
+            console.log(data.result.message );
+            if (data.result.message === undefined && response.status === 200 ) {
                 setToken(data.result.token);
             } else {
-                toast.error(data.message);
+                toast.error(data.result.message);
             }
         } catch (error) {
             if (error.response) {

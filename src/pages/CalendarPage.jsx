@@ -85,7 +85,7 @@ export default function Calendar() {
           getDayIndex(schedule.dayOfWeek) === daysOfWeek.indexOf(day)
       )
       .map((schedule) => (
-        <div key={schedule.id} className="schedule-item p-2 border border-black rounded" >
+        <div key={schedule.id} className="schedule-item p-2 border border-black rounded mb-1" >
           <div className="text-lg font-semibold">{schedule.courseName}</div>
           <div>{schedule.className}-</div>
           <div>{schedule.enrollmentClassId}</div>
@@ -99,7 +99,7 @@ export default function Calendar() {
 
   return (
     <div className="w-screen h-screen font-roboto">
-      <div className="flex relative justify-center items-center h-[15%] w-screen shadow-xl bg-white">
+      <div className="flex relative justify-center items-center h-[15%] w-full shadow-xl bg-white">
         <div className="flex fix">
           <img
             src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-iuh-inkythuatso-01-08-11-18-25.jpg"
